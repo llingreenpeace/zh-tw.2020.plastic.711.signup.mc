@@ -210,8 +210,12 @@ a.light-gray-text:hover { color: #7f7f7f !important}
 .first-letter-round {background-color: #e6af2a; border-radius: 50%; color: #fff; font-size: 30px; padding: 15px;}
 
 /* font family */
-.alt-font {font-family: 'Montserrat', sans-serif !important;}
-.main-font {font-family: 'Roboto', sans-serif !important;}
+.alt-font {
+    font-family:'Noto Sans TC', "微軟正黑體", "Microsoft JhengHei", "Roboto Sans", sans-serif !important;
+}
+.main-font {
+    font-family:'Noto Sans TC', "微軟正黑體", "Microsoft JhengHei", "Roboto Sans", sans-serif !important;
+}
 
 /* ===================================
     Icon
