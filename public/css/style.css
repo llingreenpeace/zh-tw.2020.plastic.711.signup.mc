@@ -97,7 +97,12 @@ ul, ol, dl {list-style-position: outside;}
 ====================================== */
 
 /* heading */
-h1, h2, h3, h4, h5, h6 { text-transform: uppercase; margin:0; padding:0; color: #000; }
+h1, h2, h3, h4, h5, h6 { 
+    /* text-transform: uppercase;  */
+    margin:0; 
+    padding:0; 
+    color: #000; 
+}
 h1 { font-size:45px; line-height: 45px; line-height: 50px}
 h2 { font-size:40px; line-height:45px}
 h3 { font-size:35px; line-height:40px}
@@ -855,6 +860,9 @@ nav.sidebar-nav .container { vertical-align: top; padding:60px 40px }
 ====================================== */
 
 .slider-text-middle-main { display: table; height: 100%; width: 82%; margin-left: 6%;}
+@media(max-width: 767px) {
+    .slider-text-middle-main { width: 88%;}
+}
 .slider-text-bottom { display: table-cell; vertical-align: bottom; }
 .slider-text-top { display: table-cell; vertical-align: top; }
 .slider-text-middle { display: table-cell; vertical-align: middle; }

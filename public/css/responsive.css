@@ -7,7 +7,7 @@
     .grid-style1 .grid figcaption h3 {padding: 0 50px;}
 
     /* agency */
-    .service { min-height: 701px;}
+    /* .service { min-height: 701px;} */
 
     /* personal */
     .personal .container { width: 1000px !important;}
@@ -36,7 +36,7 @@
     .blog-post-style5 .post-details {min-height: 315px; padding: 15% 12%;}
 
     /* agency */
-    .service { min-height: 744px;}
+    /* .service { min-height: 744px;} */
 
     /* restaurant */
     .menu-img { display: none;}
@@ -269,12 +269,13 @@
     .tab-style-1 li a {padding: 15px 16px 15px 0;}
 
     /* slider */
-    .slider-typography .slider-typography-option1 span { font-size: 80px;}
+    /* byGC */
+    /* .slider-typography .slider-typography-option1 span { font-size: 80px;} */
     .slider-typography .slider-typography-option3 span { font-size: 70px; line-height: 70px;}
 
     /* agency */
     .call-us .title-small {font-size: 16px !important;}
-    .service { min-height: 600px;}
+    /* .service { min-height: 600px;} */
     .agency-skill { min-height: 400px;}
 
     /* restaurant */
@@ -1002,7 +1003,8 @@
     .grid-style1-border {width: calc(100% - 0px); top: 0; left: 0; height: calc(100% - 0px);}
 
     /* agency */
-    .slider-typography .slider-typography-option1 span {font-size: 56px; line-height: 60px;}
+    /* byGC */
+    /* .slider-typography .slider-typography-option1 span {font-size: 56px; line-height: 60px;} */
     section { padding: 80px 0;}  
     .post-thumbnail > img { height: 100%; width: auto;}
     
@@ -1135,7 +1137,8 @@
     .tattoo-art-box .title-extra { font-size: 35px !important; line-height: 40px !important;}
 
     /* agency */
-    .slider-typography .slider-typography-option1 span {font-size: 34px; line-height: 38px;}
+    /* byGC */
+    /* .slider-typography .slider-typography-option1 span {font-size: 34px; line-height: 38px;} */
     .slider-typography .slider-typography-option1 p {font-size: 11px;}
     .footer-social a {margin: 0 10px;}  
 
