@@ -151,7 +151,8 @@ $(document).ready(function () {
     // Inner links
     $('.inner-link').smoothScroll({
         speed: 900,
-        offset: -59
+        // offset: -59
+        offset: 1
     });
     $('.section-link').smoothScroll({
         speed: 900,
