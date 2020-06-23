@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "gpea-npm-en-uploader": "greenpeace/gpea-npm-en-uploader"
+    "gpea-npm-en-uploader": "greenpeace/gpea-npm-en-uploader",
+    "progressbar.js": "^1.1.0"
   },
   "devDependencies": {
     "node-sass": "^4.13.1",

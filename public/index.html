@@ -149,7 +149,9 @@
 							<h2 class="white-text font-weight-400 letter-spacing-3 alt-font">塑膠堆成的城市，不是我們要的未來</h2><br>
 							<h6 class="white-text alt-font">統一超商一年製造的鮮食外盒塑膠垃圾，可以堆高成 <span>6500 座</span> 101 大樓
 								要求統一超商減少一次性塑膠使用，承諾減塑！</h6>
-							<a href="#contact" class="scroll-btn letter-spacing-8 inner-link">立即連署</a>
+							<div class="scroll-btn-container">
+								<a href="#contact" class="scroll-btn letter-spacing-8 inner-link">立即連署</a>	
+							</div>
 						</div>
 					</div>
 				</div>
@@ -223,7 +225,9 @@
 							<br>
 							您的忠實消費者 敬上
 						</div>
-						<a href="#contact" class="scroll-btn letter-spacing-8 inner-link white-text">我要寄信！</a>
+						<div class="scroll-btn-container">
+							<a href="#contact" class="scroll-btn letter-spacing-8 inner-link white-text">我要寄信！</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -304,7 +308,7 @@
 	<section id="contact" class="wow fadeIn no-padding-top no-padding-bottom">
 		<div style="background-image:url('http://placehold.it/1920x960'); background-position: center;">
 			<div class="opacity-full bg-dark-gray" style="position: relative;">
-				<div class="container full-screen position-relative contact-container">
+				<div class="container position-relative contact-container">
 					<div class="call-us">
 						<div class="col-sm-7 col-xs-12 contact-left">
 							<h1 class="yellow-text letter-spacing-3">統一超商請回覆！<br>給我們友善環境的選擇</h1>
@@ -317,6 +321,17 @@
 							<h4 class="yellow-text letter-spacing-3 font-weight-800">讓地球的下一秒，比上一秒更乾淨</h4>
 						</div>
 						<div class="col-sm-5 col-xs-12  contact-right">
+							<div class="progress-bar-container">
+								<div id="progress-bar"></div>
+								<div class="row">
+									<div class="col-sm-6 col-xs-6">
+										<p class="white-text">連署人數： <span id="petition-count">12345</span></p>
+									</div>
+									<div class="col-sm-6 col-xs-6">
+										<p class="white-text">目標人數：<span id="petition-goal">20000</span></p>
+									</div>
+								</div>
+							</div>
 							<form id="fake-form" action="javascript:void(0)">
 								<input type="hidden" name="options" value="" />
 	
@@ -338,35 +353,32 @@
 
 								<div class="form-field text-field mandatory">
 									<div class="select-style small-select alt-font">
-										<select id="fake_supporter_birthYear" name="fake_supporter_birthYear">
-											<option selected>WHAT ARE YOU INTERESTED IN?</option>
-											<option value="Web Development">Web Development</option>
-											<option value="Mobile Application">Mobile Application</option>
-											<option value="Graphic Design">Graphic Design</option>
-											<option value="Other">Other</option>
-										</select>
+										<select id="fake_supporter_birthYear" name="fake_supporter_birthYear"></select>
 									</div>
 								</div>
 
 								<div class="form-field checkbox-field white-text">
 									<div class="checkbox">
 										<input id="fake_optin" type="checkbox" class="fake_input--checkbox" name="fake.supporter.emailOptin" value="" checked />
-										<label for="fake_optin" class="" style="">
+										<label for="fake_optin" class="fake_input--checkbox--label">
 											我願意收到綠色和平發送的電子通訊，掌握環保工作的最新消息！我並同意綠色和平按照其
 											<a href="https://www.greenpeace.org/taiwan/policies/privacy-and-cookies/?ref=2020-climate-vote_footer_homepage" title="個人隱私政策" target="_blank">個人隱私政策</a>
 											與我保持聯絡。
 										</label>
 									</div>
 								</div>
-								<label id="fake.supporter.emailOptin-error" class="error" for="fake.supporter.emailOptin"></label>
+								<!-- <label id="fake.supporter.emailOptin-error" class="error" for="fake.supporter.emailOptin"></label>
 								<a href="#" class="hidden back-link back-btn">
 									<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 59.414 59.414" style="enable-background:new 0 0 59.414 59.414;" xml:space="preserve">
 										<g>
 											<polygon style="fill:#fff;" points="29.707,45.268 0,15.561 1.414,14.146 29.707,42.439 58,14.146 59.414,15.561   " />
 										</g>
 									</svg>
-								</a>
+								</a> -->
 								<!--<a href="#" class="back-btn text-link"><span>BACK</span></a>-->
+								<div class="scroll-btn-container">
+									<a href="" class="scroll-btn letter-spacing-8 inner-link white-text">立即連署</a>
+								</div>
 							</form>
 						</div>
 					</div>
@@ -448,14 +460,31 @@
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12 col-sm-12 text-center">
-						<div class="text-center"><a class="inner-link" href="#home"><img
-									src="%PUBLIC_URL%/images/logo-personal-footer.png" alt="" /></a></div>
-						<span
-							class="text-small alt-font text-uppercase margin-two margin-lr-auto display-block letter-spacing-1 black-text">Responsive
-							& Multipurpose OnePage Template</span>
+					<div class="col-sm-4 col-xs-12 text-center">
+						<p>© 2020 Greenpeace</p>
 					</div>
-					<div
+					<div class="col-sm-4 col-xs-12">
+						<p>綠色和平致力於為地球發聲， 我們的存在是因為脆弱的地球需要改變、需要行動。 但保護地球的使命不能僅靠綠色和平來完成， 「您」就是改變世界的力量！</p>
+					</div>
+					<div class="col-sm-4 col-xs-12">
+						<div class="row">
+							<div class="col-sm-12 col-xs-12">
+								<button class="btn btn-footer">主頁</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-xs-12">
+								<button class="btn btn-footer">支持我們</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-xs-12">
+								<button class="btn btn-footer">隱私政策與個人資料收集聲明</button>
+							</div>
+						</div>
+					</div>
+					
+					<!-- <div
 						class="col-md-12 col-sm-12 text-center margin-four no-margin-lr no-margin-bottom xs-margin-fifteen xs-no-margin-lr xs-no-margin-bottom">
 						<div class="footer-social">
 							<a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -465,11 +494,11 @@
 							<a href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
 							<a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i></a>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
-		<div class="footer-bottom bg-gray">
+		<!-- <div class="footer-bottom bg-gray">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 col-sm-12 text-center">
@@ -478,7 +507,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</footer>
 	<!-- end footer -->
 

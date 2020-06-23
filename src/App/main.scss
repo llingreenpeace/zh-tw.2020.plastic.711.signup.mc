@@ -25,16 +25,20 @@ body {
     background-size: cover;
 }
 
-.scroll-btn {
-    color: white;
-    border: 2px solid white;
-    padding: 10px 30px;
-    font-size: 1.5rem;
+.scroll-btn-container {
+    width: 100%;
+    .scroll-btn {
+        color: white;
+        border: 2px solid white;
+        padding: 10px 30px;
+        font-size: 1.5rem;
+    }
+    
+    .scroll-btn:hover {
+        color: white;
+    }
 }
 
-.scroll-btn:hover {
-    color: white;
-}
 
 #email-content {
     padding: unset !important;
@@ -66,7 +70,7 @@ body {
 
 //contact
 .contact-container {
-    padding:30px;
+    padding: 70px 30px;
     .call-us {
         width: 100%;
         .contact-left {
@@ -89,17 +93,41 @@ body {
         .contact-right {
             background-color: #ee2a1e;
             padding: 30px;
-            input {
+            input, select {
                 font-size: 1.4rem !important;
             }
         }
     }
 }
 
-.fake_input--checkbox {
-    width: unset;
-    left: 20px;
+#progress-bar-container {
+    margin-bottom: 10px;
 }
+
+.checkbox {
+    margin-bottom: 40px;
+    .fake_input--checkbox {
+        width: unset;
+        left: 20px;
+    }
+    .fake_input--checkbox--label {
+        a {
+            color: yellow;
+        }
+    }
+}
+
+.en__component--page {
+    display: none;
+}
+
+.btn-footer {
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 
 @media (max-width: 480px) {
     h1 {
@@ -130,5 +158,11 @@ body {
 
     .email-content > .scroll-btn {
         margin-left: 3%;
+    }
+}
+
+@media (max-width: 767px) {
+    .scroll-btn-container {
+        text-align: center;
     }
 }
