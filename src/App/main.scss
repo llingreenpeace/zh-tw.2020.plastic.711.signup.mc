@@ -1,7 +1,10 @@
 body {
     overflow-x: hidden;
 }
-
+.logo {
+    position: absolute;
+    z-index: 2;
+}
 .section-title-main {
     &:before {
         content: "-";
@@ -12,7 +15,9 @@ body {
         margin-right: 30px;
     }
 }
-
+.slider-text-middle-main {
+    padding:20px;
+}
 // @media (max-width: 767px) {
 //     h2 {
 //         font-size: 1.5rem;
@@ -30,12 +35,20 @@ body {
     .scroll-btn {
         color: white;
         border: 2px solid white;
-        padding: 10px 30px;
+        padding: 10px 30px 10px 34px;
         font-size: 1.5rem;
+        font-weight: 800;
     }
     
     .scroll-btn:hover {
-        color: white;
+        color: #1b1b1b !important;
+        background-color: white;
+        border: 2px solid #1b1b1b;   
+    }
+    .scroll-btn.submit-btn:hover {
+        color: #ee2a1e !important;
+        background-color: white;
+        border: 2px solid #ee2a1e;   
     }
 }
 
@@ -128,10 +141,13 @@ body {
     margin-bottom: 10px;
 }
 
+.parallax-fix {
+    background-size: 50% 100% !important;
+}
 
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
     h1 {
-        font-size: 2.3rem !important;
+        font-size: 3rem !important;
     }
     h2 {
         font-size: 2rem !important;
@@ -155,14 +171,20 @@ body {
             margin-right: 10px;
         }
     }
-
     .email-content > .scroll-btn {
         margin-left: 3%;
+    }
+    .contact-left {
+        padding-top: 20px !important;
+    }
+    .scroll-btn-container {
+        text-align: center;
     }
 }
 
 @media (max-width: 767px) {
-    .scroll-btn-container {
-        text-align: center;
+    h1 {
+        font-size: 2rem !important;
     }
+    
 }
