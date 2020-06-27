@@ -5,6 +5,8 @@ const {$} = window
 $(document).ready(function() {
     console.log( "ready!" );
     initProgressBar();
+    createYearOptions()
+    initForm();
     init();
 });
 
@@ -21,8 +23,7 @@ function initProgressBar() {
     bar.animate(0.6);
 }
 
-function init () {
-    // create the year options
+function createYearOptions() {
     let currYear = new Date().getFullYear()
     for (var i = 0; i < 80; i++) {
         let option = `<option value="01/01/${currYear-i}">${currYear-i}</option>`
@@ -30,4 +31,120 @@ function init () {
         $("#fake_supporter_birthYear").append(option);
         $('#en__field_supporter_NOT_TAGGED_6').append(option);
     }
+}
+
+const resolveEnPagePetitionStatus = () => {
+	let status = "FRESH";
+	// console.log(window);
+	if (window.pageJson.pageNumber === 2) {
+		status = "SUCC"; // succ page
+	} else {
+		status = "FRESH"; // start page
+	}
+
+	return status;
+};
+
+const initForm = () => {
+    console.log('init form')
+
+    $('#center_sign-submit').click(function(e){
+        e.preventDefault();
+        $("#fake-form").submit();
+        console.log("fake-form submitting")
+    }).end()
+
+    $.validator.addMethod( //override email with django email validator regex - fringe cases: "user@admin.state.in..us" or "name@website.a"
+        'email',
+        function(value, element){
+            return this.optional(element) || /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/i.test(value);
+        },
+        'Email 格式錯誤'
+    );
+
+    $.validator.addMethod(
+        "taiwan-phone",
+        function (value, element) {
+            
+            const phoneReg1 = new RegExp(/0\d{1,2}-\d{6,8}$/).test(value);
+            const phoneReg2 = new RegExp(/0\d{1,2}\d{6,8}$/).test(value);
+            const phoneReg3 = new RegExp(/((?=(09))[0-9]{10})$/).test(value);
+            const phoneReg4 = new RegExp(/(886\d{1,2}\d{6,8})$/).test(value);
+            const phoneReg5 = new RegExp(/(886\d{1,2}-\d{7,9})$/).test(value);
+            
+            // console.log(value)
+            // console.log(phoneReg1)
+            // console.log(phoneReg2)
+            // console.log(phoneReg3)
+            // console.log(phoneReg4)
+            // console.log(phoneReg5)
+
+            if ($('#fake_supporter_phone').val()) {
+                return (phoneReg1 || phoneReg2 || phoneReg3 || phoneReg4 || phoneReg5)
+            }
+            console.log('phone testing')
+            return true
+        },
+        "電話格式不正確，請只輸入數字 0912345678 和 02-23612351")
+
+    $.validator.addClassRules({ // connect it to a css class
+        "email": {email: true},
+        "taiwan-phone" : { "taiwan-phone" : true }
+    });
+
+    $("#fake-form").validate({
+        errorPlacement: function(error, element) {
+            console.log(error)
+            element.parents("div.form-field:first").after( error );
+        },
+        submitHandler: function(form) {
+            
+            $('#en__field_supporter_firstName').val($('#center_name').val());
+            $('#en__field_supporter_lastName').val($('#center_lastname').val());
+            $('#en__field_supporter_emailAddress').val($('#center_email').val());
+    
+            if (!$('#center_phone').prop('required') && !$('#center_phone').val()) {
+                $('#en__field_supporter_phoneNumber').val('0900000000');
+            } else {
+                $('#en__field_supporter_phoneNumber').val($('#center_phone').val());
+            }
+            $('#en__field_supporter_NOT_TAGGED_6').val($('#center_yearofbirth').val());
+            
+            console.log('en form submit')
+            
+            // $("form.en__component--page").submit();
+        },
+        invalidHandler: function(event, validator) {
+            // 'this' refers to the form
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                console.log(errors)
+                var message = errors == 1
+                    ? 'You missed 1 field. It has been highlighted'
+                    : 'You missed ' + errors + ' fields. They have been highlighted';
+                $("div.error").show();
+            } else {
+                $("div.error").hide();
+            }
+        }
+    });
+}
+
+
+
+function init () {
+    
+    const EN_PAGE_STATUS = resolveEnPagePetitionStatus()
+	// console.log("EN_PAGE_STATUS", EN_PAGE_STATUS)
+	if (EN_PAGE_STATUS==="FRESH") {
+    
+        $(".page-2").hide();
+
+	} else if (EN_PAGE_STATUS==="SUCC") {
+        
+        $('.page-1').hide();
+        $('.page-2').show();
+        $("section").hide();
+        $("#home").show();
+	}
 }

@@ -171,7 +171,7 @@ $(document).ready(function () {
             var imgSrc = jQuery(this).children('.parallax-background-img').attr('src');
             jQuery(this).css('background', 'url("' + imgSrc + '")');
             jQuery(this).children('.parallax-background-img').remove();
-            $(this).css('background-position', '0 0%');
+            $(this).css('background-position', '0 0');
         }
 
     });
@@ -179,7 +179,7 @@ $(document).ready(function () {
     function SetParallax() {
         if ($(window).width() > 1030 && !IsParallaxGenerated) {
             $('.parallax1').parallax("50%", 0.1);
-            $('.parallax2').parallax("0", 0.2);
+            $('.parallax2').parallax("0", 0);
             $('.parallax3').parallax("50%", 0.3);
             $('.parallax4').parallax("50%", 0.4);
             $('.parallax5').parallax("50%", 0.5);
@@ -1202,4 +1202,12 @@ $(function () {
                 $(this).toggleClass('open');
                 $('b', this).toggleClass("caret caret-up");
             });
+});
+
+/*==============================================================
+    dropdown menu
+==============================================================*/
+
+jQuery.extend(jQuery.validator.messages, {
+    required: "此欄位為必填",
 });

@@ -70,7 +70,7 @@ a:focus {outline: none !important; }
 img { -webkit-backface-visibility: hidden; max-width:100%; height:auto; }
 video { background-size: cover; display: table-cell; vertical-align: middle; width: 100%; }
 ul{ margin: 0px; padding:0px; }
-input, textarea, select{ border: 1px solid #dfdfdf; letter-spacing: 1px; font-size: 11px;  padding: 8px 15px; width: 100%; margin: 0 0 20px 0; max-width: 100%; resize: none;}
+input, textarea, select{ border: 1px solid #dfdfdf; letter-spacing: 1px; font-size: 11px;  padding: 8px 15px; width: 100%; margin: 10px 0 10px 0; max-width: 100%; resize: none;}
 input[type="submit"] { width: auto}
 input[type="button"], input[type="text"], input[type="email"], input[type="search"], input[type="password"], textarea, input[type="submit"] { -webkit-appearance: none;  border-radius: 0; }
 input:focus, textarea:focus{ border: 1px solid #989898; outline: none; }
@@ -862,7 +862,7 @@ nav.sidebar-nav .container { vertical-align: top; padding:60px 40px }
 
 .slider-text-middle-main { display: table; height: 100%; width: 100%;}
 @media(max-width: 767px) {
-    .slider-text-middle-main { width: 88%;}
+    /* .slider-text-middle-main { width: 88%;} */
 }
 .slider-text-bottom { display: table-cell; vertical-align: bottom; }
 .slider-text-top { display: table-cell; vertical-align: top; }
@@ -1314,13 +1314,13 @@ ul.list-line li span {min-width:130px; display:inline-block}
 
 .small-input, .small-textarea { padding: 12px 15px; border:2px solid rgba(0,0,0,.1); font-size: 11px !important}
 .small-input:focus, .small-select:focus {border:2px solid rgba(0,0,0,.5);}
-.small-select select {padding: 15px 15px;}
+.small-select select {padding: 8px 15px;}
 
 .medium-input-light, .medium-textarea-light, .medium-select-light select { padding: 12px 25px; border:2px solid rgba(255,255,255,.1) !important; font-size: 12px !important; background: rgba(255,255,255,.1) !important;}
 .medium-input-light:focus, .medium-select-light:focus {border:2px solid rgba(255,255,255,.4) !important;}
 
-.select-style { padding: 0; margin: 0; width: 100%; overflow: hidden; background-color: #fff; margin: 0 0 20px;  background: #fff url("../images/select-arrow.png") no-repeat 97% 50%; }
-.select-style select { width: 100%; border: none; box-shadow: none; background-color: transparent; background-image: none; -webkit-appearance: none; -moz-appearance: none; appearance: none;  cursor: pointer; font-size:11px; letter-spacing:1px; margin-bottom:0; color:#999999; border-radius: 0; }
+.select-style { padding: 0; margin-top: 10px; width: 100%; overflow: hidden; background-color: #fff; background: #fff url("../images/select-arrow.png") no-repeat 97% 50%; }
+.select-style select { width: 100%; margin:0; border: none; box-shadow: none; background-color: transparent; background-image: none; -webkit-appearance: none; -moz-appearance: none; appearance: none;  cursor: pointer; font-size:11px; letter-spacing:1px; color:#999999; border-radius: 0; }
 .select-style select:focus { outline: none; border: none; box-shadow: none }
 
 .input-round { border-radius:4px !important }

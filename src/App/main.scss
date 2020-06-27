@@ -1,6 +1,11 @@
 body {
     overflow-x: hidden;
 }
+
+.error {
+    color: white;
+}
+
 .logo {
     position: absolute;
     z-index: 2;
@@ -60,8 +65,7 @@ body {
 
 // email section
 .email-content {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding: 80px 40px;
     position: relative;
     z-index: 2;
     color: #fff;
@@ -171,14 +175,18 @@ body {
             margin-right: 10px;
         }
     }
-    .email-content > .scroll-btn {
-        margin-left: 3%;
+    .email-content {
+        padding: 80px 0;
+        .scroll-btn {
+            margin-left: 3%;
+        }
     }
     .contact-left {
         padding-top: 20px !important;
     }
     .scroll-btn-container {
         text-align: center;
+        margin-bottom: 50px;
     }
 }
 

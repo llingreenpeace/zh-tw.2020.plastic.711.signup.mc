@@ -328,7 +328,7 @@
     /* personal */
     .personal .container { width: 750px !important;}
 }
-@media (max-width: 1050px) {
+@media (max-width: 991px) {
     /* work */
     .grid-style1 .grid figcaption h3 {font-size: 14px; line-height: 20px;}
     .grid-style2 .grid figcaption {padding: 17px 20px;}
