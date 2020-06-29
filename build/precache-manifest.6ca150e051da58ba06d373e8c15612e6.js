@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2a78067be6401a22c2ad66b5228d0285",
+    "revision": "d72171a285599aafcc209c7578f09148",
     "url": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup/index.html"
   },
   {
