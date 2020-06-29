@@ -71,13 +71,6 @@ const initForm = () => {
             const phoneReg3 = new RegExp(/((?=(09))[0-9]{10})$/).test(value);
             const phoneReg4 = new RegExp(/(886\d{1,2}\d{6,8})$/).test(value);
             const phoneReg5 = new RegExp(/(886\d{1,2}-\d{7,9})$/).test(value);
-            
-            // console.log(value)
-            // console.log(phoneReg1)
-            // console.log(phoneReg2)
-            // console.log(phoneReg3)
-            // console.log(phoneReg4)
-            // console.log(phoneReg5)
 
             if ($('#fake_supporter_phone').val()) {
                 return (phoneReg1 || phoneReg2 || phoneReg3 || phoneReg4 || phoneReg5)
@@ -99,20 +92,22 @@ const initForm = () => {
         },
         submitHandler: function(form) {
             
-            $('#en__field_supporter_firstName').val($('#center_name').val());
-            $('#en__field_supporter_lastName').val($('#center_lastname').val());
-            $('#en__field_supporter_emailAddress').val($('#center_email').val());
+            $('#en__field_supporter_firstName').val($('#fake_supporter_firstName').val());
+            $('#en__field_supporter_lastName').val($('#fake_supporter_lastName').val());
+            $('#en__field_supporter_emailAddress').val($('#fake_supporter_emailAddress').val());
     
-            if (!$('#center_phone').prop('required') && !$('#center_phone').val()) {
+            if (!$('#fake_supporter_phone').prop('required') && !$('#fake_supporter_phone').val()) {
                 $('#en__field_supporter_phoneNumber').val('0900000000');
             } else {
-                $('#en__field_supporter_phoneNumber').val($('#center_phone').val());
+                $('#en__field_supporter_phoneNumber').val($('#fake_supporter_phone').val());
             }
-            $('#en__field_supporter_NOT_TAGGED_6').val($('#center_yearofbirth').val());
+            $('#en__field_supporter_NOT_TAGGED_6').val($('#fake_supporter_birthYear').val());
+            $('#en__field_supporter_questions_7276').val(($('#fake_optin').prop("checked") ? "Y": "N"));
             
             console.log('en form submit')
+            // console.log($('form.en__component--page').serialize())
             
-            // $("form.en__component--page").submit();
+            $("form.en__component--page").submit();
         },
         invalidHandler: function(event, validator) {
             // 'this' refers to the form
