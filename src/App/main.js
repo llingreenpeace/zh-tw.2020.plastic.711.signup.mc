@@ -20,7 +20,7 @@ function initProgressBar() {
         trailWidth: 1,
         svgStyle: {width: '100%', height: '100%'}
     });
-    bar.animate(0.6);
+    bar.animate(0.15);
 }
 
 function createYearOptions() {
@@ -124,8 +124,6 @@ const initForm = () => {
         }
     });
 }
-
-
 
 function init () {
     
