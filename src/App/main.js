@@ -1,6 +1,7 @@
 import './main.scss'
 const ProgressBar = require('progressbar.js')
-const {$} = window
+const {$, dataLayer} = window
+
 
 $(document).ready(function() {
     console.log( "ready!" );
@@ -104,6 +105,14 @@ const initForm = () => {
             $('#en__field_supporter_NOT_TAGGED_6').val($('#fake_supporter_birthYear').val());
             $('#en__field_supporter_questions_7276').val(($('#fake_optin').prop("checked") ? "Y": "N"));
             
+            dataLayer.push({
+                'event': 'gaEvent',
+                'eventCategory': 'petitions',
+                'eventAction': 'signup',
+                'eventLabel': '2020-plastic_retailer_seveneleven',
+                'eventValue': undefined
+            });
+
             console.log('en form submit')
             // console.log($('form.en__component--page').serialize())
             
