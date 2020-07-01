@@ -26,6 +26,7 @@ function initProgressBar() {
 
 function createYearOptions() {
     let currYear = new Date().getFullYear()
+    $("#fake_supporter_birthYear").append(`<option value="">出生年份</option>`);
     for (var i = 0; i < 80; i++) {
         let option = `<option value="01/01/${currYear-i}">${currYear-i}</option>`
 
