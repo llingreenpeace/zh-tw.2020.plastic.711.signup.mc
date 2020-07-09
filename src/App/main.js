@@ -1,6 +1,6 @@
 import './main.scss'
 const ProgressBar = require('progressbar.js')
-const {$, dataLayer} = window
+const {$, dataLayer, currency} = window
 
 
 $(document).ready(function() {
@@ -11,7 +11,23 @@ $(document).ready(function() {
     init();
 });
 
-function initProgressBar() {
+async function initProgressBar() {
+
+    const goal = 20000;
+    $('#petition-goal').html(currency(goal, { precision: 0, separator: ',' }).format());
+
+    let count = 2737;
+    try {
+        let response = await fetch('https://act.greenpeace.org/page/widget/713556');
+        let res = await response.json();
+        count = res.data.rows.map((item) => {return parseInt(item.columns[4].value)}).reduce((a, b) => {return a + b}, 0);
+        $('#petition-count').html(currency(count, { precision: 0, separator: ',' }).format());
+
+    } catch (err) {
+        console.log(err);
+    }
+    let percent = count / goal;
+
     let bar = new ProgressBar.Line('#progress-bar', {
         strokeWidth: 3,
         easing: 'easeInOut',
@@ -21,7 +37,8 @@ function initProgressBar() {
         trailWidth: 1,
         svgStyle: {width: '100%', height: '100%'}
     });
-    bar.animate(0.15);
+    // console.log(percent)
+    bar.animate(percent);
 }
 
 function createYearOptions() {
