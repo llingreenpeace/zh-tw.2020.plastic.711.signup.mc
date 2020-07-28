@@ -13,19 +13,12 @@ $(document).ready(function() {
 
 async function initProgressBar() {
 
-    const goal = 20000;
+    let goal = parseInt(document.querySelector('input[name="numSignupTarget"]').value, 10) || 0,
+        count = parseInt(document.querySelector('input[name="numResponses"]').value, 10) || 0;    
+    
     $('#petition-goal').html(currency(goal, { precision: 0, separator: ',' }).format());
-
-    let count = 2737;
-    try {
-        let response = await fetch('https://act.greenpeace.org/page/widget/713556');
-        let res = await response.json();
-        count = res.data.rows.map((item) => {return parseInt(item.columns[4].value)}).reduce((a, b) => {return a + b}, 0);
-        $('#petition-count').html(currency(count, { precision: 0, separator: ',' }).format());
-
-    } catch (err) {
-        console.log(err);
-    }
+    $('#petition-count').html(currency(count, { precision: 0, separator: ',' }).format());
+  
     let percent = count / goal;
 
     let bar = new ProgressBar.Line('#progress-bar', {
@@ -41,11 +34,35 @@ async function initProgressBar() {
     bar.animate(percent);
 }
 
+/**
+ * Send the tracking event to the ga
+ * @param  {string} eventLabel The ga trakcing name, normally it will be the short campaign name. ex 2019-plastic_retailer
+ * @param  {[type]} eventValue Could be empty
+ * @return {[type]}            [description]
+ */
+const sendPetitionTracking = (eventLabel, eventValue) => {
+	window.dataLayer = window.dataLayer || [];
+
+	window.dataLayer.push({
+	    'event': 'gaEvent',
+	    'eventCategory': 'petitions',
+	    'eventAction': 'signup',
+	    'eventLabel': eventLabel,
+	    'eventValue' : eventValue
+	});
+
+	window.dataLayer.push({
+	    'event': 'fbqEvent',
+	    'contentName': eventLabel,
+	    'contentCategory': 'Petition Signup'
+	});
+}
+
 function createYearOptions() {
     let currYear = new Date().getFullYear()
     $("#fake_supporter_birthYear").append(`<option value="">出生年份</option>`);
     for (var i = 0; i < 80; i++) {
-        let option = `<option value="01/01/${currYear-i}">${currYear-i}</option>`
+        let option = `<option value="${currYear-i}-01-01">${currYear-i}</option>`
 
         $("#fake_supporter_birthYear").append(option);
         $('#en__field_supporter_NOT_TAGGED_6').append(option);
@@ -63,6 +80,51 @@ const resolveEnPagePetitionStatus = () => {
 
 	return status;
 };
+
+/**
+ * Switch to the page
+ * @param  {int} pageNo 1 or 2
+ */
+const changeToPage = (pageNo) => {
+	if (pageNo===1) {
+		$("#page-2").hide();
+	} else if (pageNo===2) {
+		$('#page-1').hide();
+		$('#page-2').show();
+
+		// console.log("go to thank you page", redirectDonateLink)
+		// window.location.href = redirectDonateLink;
+	} else {
+		throw new Error("Unkonw PageNo:"+pageNo)
+	}
+}
+
+/**
+ * Show the full page loading
+ */
+const showFullPageLoading = () => {
+	if ($("#page-loading").length===0) {
+		$("body").append(
+			`<div id="page-loading" class="hide">
+			  <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+			</div>`)
+	}
+
+	setTimeout(() => { // to enable the transition
+		$("#page-loading").removeClass("hide")
+	}, 0)
+}
+
+/**
+ * Hide the full page loading
+ */
+const hideFullPageLoading = () => {
+	$("#page-loading").addClass("hide")
+
+	setTimeout(() => {
+		$("#page-loading").remove()
+	}, 1100)
+}
 
 const initForm = () => {
     console.log('init form')
@@ -83,22 +145,15 @@ const initForm = () => {
 
     $.validator.addMethod(
         "taiwan-phone",
-        function (value, element) {
-            
-            // const phoneReg1 = new RegExp(/0\d{1,2}-\d{6,8}$/).test(value);
-            // const phoneReg2 = new RegExp(/0\d{1,2}\d{6,8}$/).test(value);
-            // const phoneReg3 = new RegExp(/((?=(09))[0-9]{10})$/).test(value);
-            // const phoneReg4 = new RegExp(/(886\d{1,2}\d{6,8})$/).test(value);
-            // const phoneReg5 = new RegExp(/(886\d{1,2}-\d{7,9})$/).test(value);
-
+        function (value, element) {            
             const phoneReg6 = new RegExp(/^(0|886|\+886)?(9\d{8})$/).test(value);
 			const phoneReg7 = new RegExp(/^(0|886|\+886){1}[2-8]-?\d{6,8}$/).test(value);
 
             if ($('#fake_supporter_phone').val()) {
-                return (phoneReg6 || phoneReg7)
+                return (phoneReg6 || phoneReg7);
             }
-            console.log('phone testing')
-            return true
+            console.log('phone testing');
+            return true;
         },
         "電話格式不正確，請只輸入數字 0912345678 和 02-23612351")
 
@@ -113,38 +168,122 @@ const initForm = () => {
             element.parents("div.form-field:first").after( error );
         },
         submitHandler: function(form) {
+            showFullPageLoading();	
+     
+            // mc forms
+			$('#mc-form [name="FirstName"]').val($('#fake_supporter_firstName').val());
+			$('#mc-form [name="LastName"]').val($('#fake_supporter_lastName').val());
+			$('#mc-form [name="Email"]').val($('#fake_supporter_emailAddress').val());
+
+			if (!$('#fake_supporter_phone').prop('required') && !$('#fake_supporter_phone').val()) {
+			 	$('#mc-form [name="MobilePhone"]').val('0900000000');
+			} else {
+			 	$('#mc-form [name="MobilePhone"]').val($('#fake_supporter_phone').val());
+			}
+			$('#mc-form [name="Birthdate"]').val($('#fake_supporter_birthYear').val());
+			
+			$('#mc-form [name="OptIn"]').eq(0).prop("checked", $('#fake_optin').prop('checked')); 
+			
+			// collect values in the mc form
+			let formData = new FormData();
+			$("#mc-form input").each(function (idx, el) {
+				let v = null
+				if (el.type==="checkbox") {
+					v = el.checked
+				} else {
+					v = el.value
+				}
+
+				formData.append(el.name, v)
+				console.log("Use", el.name, v)
+			});
             
-            $('#en__field_supporter_firstName').val($('#fake_supporter_firstName').val());
-            $('#en__field_supporter_lastName').val($('#fake_supporter_lastName').val());
-            $('#en__field_supporter_emailAddress').val($('#fake_supporter_emailAddress').val());
-    
-            if (!$('#fake_supporter_phone').prop('required') && !$('#fake_supporter_phone').val()) {
-                $('#en__field_supporter_phoneNumber').val('0900000000');
-            } else {
-                $('#en__field_supporter_phoneNumber').val($('#fake_supporter_phone').val());
-            }
-            $('#en__field_supporter_NOT_TAGGED_6').val($('#fake_supporter_birthYear').val());
-            $('#en__field_supporter_questions_7276').val(($('#fake_optin').prop("checked") ? "Y": "N"));
-            
-            console.log('en form submit')
-            // console.log($('form.en__component--page').serialize())
-            
-            $("form.en__component--page").submit();
+            // send the request			
+			let postUrl = $("#mc-form").prop("action");
+			fetch(postUrl, {
+				method: 'POST',
+				body: formData
+			})
+			.then(response => {
+                //console.log('fetch response1', response);
+                response.json()
+            })
+			.then(response => {
+				console.log('fetch response', response);
+				if (response) {
+					if (response.Supporter) { // ok, go to next page
+						sendPetitionTracking("2020-plastic_retailer_seveneleven");
+					}
+                    changeToPage(2);
+					hideFullPageLoading();
+			  	}
+			})
+			.catch(error => {
+				hideFullPageLoading();
+				//alert("抱歉，聯署時發生問題，請您稍後再嘗試一次。");
+				console.warn("fetch error");
+				console.error(error);
+			});                        
         },
         invalidHandler: function(event, validator) {
             // 'this' refers to the form
             var errors = validator.numberOfInvalids();
             if (errors) {
-                console.log(errors)
-                var message = errors == 1
-                    ? 'You missed 1 field. It has been highlighted'
-                    : 'You missed ' + errors + ' fields. They have been highlighted';
-                $("div.error").show();
-            } else {
-                $("div.error").hide();
+                console.log(errors);
             }
         }
     });
+
+    //email suggestion
+	// for email correctness
+	let domains = [
+		"me.com",
+		"outlook.com",
+		"netvigator.com",
+		"cloud.com",
+		"live.hk",
+		"msn.com",
+		"gmail.com",
+		"hotmail.com",
+		"ymail.com",
+		"yahoo.com",
+		"yahoo.com.tw",
+		"yahoo.com.hk"
+	];
+	let topLevelDomains = ["com", "net", "org"];
+
+	var Mailcheck = require('mailcheck');
+	//console.log(Mailcheck);
+	$("#fake_supporter_emailAddress").on('blur', function() {
+		console.log('center_email on blur - ',  $("#center_email").val());		
+		Mailcheck.run({
+			email: $("#fake_supporter_emailAddress").val(),
+			domains: domains, // optional
+			topLevelDomains: topLevelDomains, // optional
+			suggested: (suggestion) => {
+                $(`<div class="email-suggestion">您想輸入的是 <strong id="emailSuggestion">${suggestion.full}</strong> 嗎？</div>`).insertAfter("#fake_supporter_emailAddress");
+				//$('#emailSuggestion').html(suggestion.full);
+				//$('.email-suggestion').show();
+                console.log(suggestion.full);
+                
+                $(".email-suggestion").click(function() {
+                    console.log('email-suggestion click');
+                    $("#fake_supporter_emailAddress").val($('#emailSuggestion').html());
+                    $('.email-suggestion').remove();
+                });
+			},
+			empty: () => {
+				this.emailSuggestion = null
+			}
+		});
+	});
+    
+    //隱藏dd頁面的捐款按鈕
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams.get('utm_source') == "dd") {
+        $('.donate').hide();
+    }
 }
 
 function init () {
