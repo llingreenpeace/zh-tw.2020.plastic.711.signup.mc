@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/css/main.ac41613d.chunk.css",
-    "main.js": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/js/main.316bcb41.chunk.js",
-    "main.js.map": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/js/main.316bcb41.chunk.js.map",
+    "main.css": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/css/main.d651522b.chunk.css",
+    "main.js": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/js/main.2cfbd65b.chunk.js",
+    "main.js.map": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/js/main.2cfbd65b.chunk.js.map",
     "runtime-main.js": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/js/runtime-main.6aa387d7.js",
     "runtime-main.js.map": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/js/runtime-main.6aa387d7.js.map",
     "static/js/2.b2fdb7f2.chunk.js": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/js/2.b2fdb7f2.chunk.js",
     "static/js/2.b2fdb7f2.chunk.js.map": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/js/2.b2fdb7f2.chunk.js.map",
     "index.html": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/index.html",
-    "precache-manifest.89d5cee5c0e2416e7ce6e990255ac779.js": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/precache-manifest.89d5cee5c0e2416e7ce6e990255ac779.js",
+    "precache-manifest.c5600add5c43b019ee9d1dc6963044c3.js": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/precache-manifest.c5600add5c43b019ee9d1dc6963044c3.js",
     "service-worker.js": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/service-worker.js",
-    "static/css/main.ac41613d.chunk.css.map": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/css/main.ac41613d.chunk.css.map",
+    "static/css/main.d651522b.chunk.css.map": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/css/main.d651522b.chunk.css.map",
     "static/js/2.b2fdb7f2.chunk.js.LICENSE.txt": "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/static/js/2.b2fdb7f2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6aa387d7.js",
     "static/js/2.b2fdb7f2.chunk.js",
-    "static/css/main.ac41613d.chunk.css",
-    "static/js/main.316bcb41.chunk.js"
+    "static/css/main.d651522b.chunk.css",
+    "static/js/main.2cfbd65b.chunk.js"
   ]
 }

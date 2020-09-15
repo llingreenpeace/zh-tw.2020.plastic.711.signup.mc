@@ -4,7 +4,7 @@ const {$, dataLayer, currency} = window
 
 
 $(document).ready(function() {
-    console.log( "ready!" );
+    //console.log( "ready!" );
     initProgressBar();
     createYearOptions()
     initForm();
@@ -13,9 +13,16 @@ $(document).ready(function() {
 
 async function initProgressBar() {
 
-    let goal = parseInt(document.querySelector('input[name="numSignupTarget"]').value, 10) || 0,
-        count = parseInt(document.querySelector('input[name="numResponses"]').value, 10) || 0;    
-    
+    let goal = document.querySelector('input[name="numSignupTarget"]') ? parseInt(document.querySelector('input[name="numSignupTarget"]').value, 10) : 0;
+    let count = document.querySelector('input[name="numResponses"]') ? parseInt(document.querySelector('input[name="numResponses"]').value, 10) : 0;    
+	
+	if (isNaN(count) || count < 17900)
+		count += 17900;
+	if (isNaN(goal) || goal < 20000)
+		goal = 20000;
+    if (count > goal)
+		goal = Math.ceil(count / 10000) * 10000;
+        
     $('#petition-goal').html(currency(goal, { precision: 0, separator: ',' }).format());
     $('#petition-count').html(currency(count, { precision: 0, separator: ',' }).format());
   
@@ -56,6 +63,9 @@ const sendPetitionTracking = (eventLabel, eventValue) => {
 	    'contentName': eventLabel,
 	    'contentCategory': 'Petition Signup'
 	});
+
+	window.uetq = window.uetq || [];  
+	window.uetq.push ('event', 'signup', {'event_category': 'petitions', 'event_label': eventLabel, 'event_value': 0});
 }
 
 function createYearOptions() {
@@ -87,10 +97,21 @@ const resolveEnPagePetitionStatus = () => {
  */
 const changeToPage = (pageNo) => {
 	if (pageNo===1) {
-		$("#page-2").hide();
+		$(".page-2").hide();
 	} else if (pageNo===2) {
-		$('#page-1').hide();
-		$('#page-2').show();
+		$('.page-1').hide();
+		$('.page-2').show();
+		
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'smooth'
+		});
+
+		$('#email-content').hide();
+		$('#counter-section').hide();
+		$('#services').hide();
+		$('#contact').hide();
 
 		// console.log("go to thank you page", redirectDonateLink)
 		// window.location.href = redirectDonateLink;
@@ -127,12 +148,12 @@ const hideFullPageLoading = () => {
 }
 
 const initForm = () => {
-    console.log('init form')
+    //console.log('init form')
 
     $('#center_sign-submit').click(function(e){
         e.preventDefault();
         $("#fake-form").submit();
-        console.log("fake-form submitting")
+        //console.log("fake-form submitting")
     }).end()
 
     $.validator.addMethod( //override email with django email validator regex - fringe cases: "user@admin.state.in..us" or "name@website.a"
@@ -152,10 +173,10 @@ const initForm = () => {
             if ($('#fake_supporter_phone').val()) {
                 return (phoneReg6 || phoneReg7);
             }
-            console.log('phone testing');
+            //console.log('phone testing');
             return true;
         },
-        "電話格式不正確，請只輸入數字 0912345678 和 02-23612351")
+        "電話格式不正確，請只輸入數字 0912345678 和 02-23456789")
 
     $.validator.addClassRules({ // connect it to a css class
         "email": {email: true},
@@ -164,7 +185,7 @@ const initForm = () => {
 
     $("#fake-form").validate({
         errorPlacement: function(error, element) {
-            console.log(error)
+            //console.log(error)
             element.parents("div.form-field:first").after( error );
         },
         submitHandler: function(form) {
@@ -195,7 +216,7 @@ const initForm = () => {
 				}
 
 				formData.append(el.name, v)
-				console.log("Use", el.name, v)
+				//console.log("Use", el.name, v)
 			});
             
             // send the request			
@@ -204,24 +225,23 @@ const initForm = () => {
 				method: 'POST',
 				body: formData
 			})
+			.then(response => response.json())
 			.then(response => {
-                //console.log('fetch response1', response);
-                response.json()
-            })
-			.then(response => {
-				console.log('fetch response', response);
+				//console.log('fetch response', response);
 				if (response) {
+					//console.log('response Supporter', response.Supporter);
 					if (response.Supporter) { // ok, go to next page
 						sendPetitionTracking("2020-plastic_retailer_seveneleven");
 					}
-                    changeToPage(2);
-					hideFullPageLoading();
-			  	}
+                    changeToPage(2);					
+			  	} else {
+					showSubmittedError();
+				}
+				hideFullPageLoading();
 			})
 			.catch(error => {
 				hideFullPageLoading();
-				//alert("抱歉，聯署時發生問題，請您稍後再嘗試一次。");
-				console.warn("fetch error");
+				showSubmittedError();
 				console.error(error);
 			});                        
         },
@@ -255,7 +275,7 @@ const initForm = () => {
 	var Mailcheck = require('mailcheck');
 	//console.log(Mailcheck);
 	$("#fake_supporter_emailAddress").on('blur', function() {
-		console.log('center_email on blur - ',  $("#center_email").val());		
+		//console.log('center_email on blur - ',  $("#center_email").val());		
 		Mailcheck.run({
 			email: $("#fake_supporter_emailAddress").val(),
 			domains: domains, // optional
@@ -264,10 +284,8 @@ const initForm = () => {
                 $(`<div class="email-suggestion">您想輸入的是 <strong id="emailSuggestion">${suggestion.full}</strong> 嗎？</div>`).insertAfter("#fake_supporter_emailAddress");
 				//$('#emailSuggestion').html(suggestion.full);
 				//$('.email-suggestion').show();
-                console.log(suggestion.full);
                 
                 $(".email-suggestion").click(function() {
-                    console.log('email-suggestion click');
                     $("#fake_supporter_emailAddress").val($('#emailSuggestion').html());
                     $('.email-suggestion').remove();
                 });
@@ -281,9 +299,24 @@ const initForm = () => {
     //隱藏dd頁面的捐款按鈕
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    if (urlParams.get('utm_source') == "dd") {
-        $('.donate').hide();
+    if (urlParams.get('utm_source') === "dd") {
+		$('.is-hidden-at-dd-page-only').hide();
+				
+		$('#fake_supporter_phone').removeAttr("required"); //移除電話欄位 required Attr
     }
+}
+
+/**
+ * Show the submitted error message 
+ */
+const showSubmittedError = () => {
+	if ($("#submitted-error").length === 0) {
+		$("body").append(`<div id="submitted-error">抱歉，連署時發生問題，請稍後再嘗試</div>`);		
+	}
+	
+	$("#submitted-error").click(function() {
+		$('#submitted-error').remove();
+	});
 }
 
 function init () {

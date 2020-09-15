@@ -33,8 +33,8 @@ const os = require('os');
 
 // definitions
 let buildFolder = path.join(__dirname, "build")
-	EndpointURL = "https://cloud.greenhk.greenpeace.org/up-dev-endpoint",
-	CampaignId = "7010k000000iJ7aAAE",
+	EndpointURL = "https://cloud.greentw.greenpeace.org/petition-pp",
+	CampaignId = "7012u000000OuloAAC",
 	DonationPageUrl = "https://www.greenpeace.org/eastasia/", // not used now
 	interests = ["Plastics"]; // Arctic, Climate, Forest, Health, Oceans, Plastics
 	//ftpConfigName = "ftp_tw", // refer to ~/.npm-en-uploader-secret

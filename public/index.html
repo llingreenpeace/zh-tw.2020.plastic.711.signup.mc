@@ -26,10 +26,12 @@
 		src="https://aaf1a18515da0e792f78-c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/1735/modernizr.min.js?v=1537757628000">
 	</script>
 
-	<link rel="shortcut icon" href="%PUBLIC_URL%/images/favicon.png">
+	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png">
+	<!--
 	<link rel="apple-touch-icon" href="%PUBLIC_URL%/images/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="%PUBLIC_URL%/images/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="%PUBLIC_URL%/images/apple-touch-icon-114x114.png">
+	-->
 	<!-- animation -->
 	<link rel="stylesheet" href="%PUBLIC_URL%/css/animate.css" />
 	<!-- bootstrap -->
@@ -128,13 +130,13 @@
 								<br>這場「減塑運動」會一直持續下去，實踐源頭減塑，需要您進一步的支持，一起為減塑拿下更多里程碑!</h6>
 							<div class="col-md-4 col-md-offset-2 col-sm-6 col-xs-12">
 								<div class="scroll-btn-container">
-									<a href="https://www.facebook.com/sharer/sharer.php?u=https://act.gp/2NHymY4"
+									<a href="https://www.facebook.com/sharer/sharer.php?u=https://act.gp/2P2MNq4"
 										target="_blank" class="scroll-btn letter-spacing-8 inner-link">Facebook 分享</a>
 								</div>
 							</div>
-							<div class="col-md-4 col-sm-6 donate">
+							<div class="col-md-4 col-sm-6 is-hidden-at-dd-page-only">
 								<div class="scroll-btn-container col-xs-12">
-									<a href="https://act.greenpeace.org/page/4723/donate/1?ref=2020-plastic_retailer_seveneleven_thankyoupage_donation_btn"
+									<a href="https://supporter.ea.greenpeace.org/tw/s/donate?campaign=plastics&ref=2020-plastic_retailer_seveneleven_thankyoupage_donation_btn"
 										target="_blank" class="scroll-btn letter-spacing-8 inner-link">支持我們</a>
 								</div>
 							</div>
@@ -147,7 +149,7 @@
 	<!-- end slider -->
 
 	<!-- counter section -->
-	<section class="border-top wow fadeIn">
+	<section id="counter-section" class="border-top wow fadeIn counter-section">
 		<div class="container">
 			<div class="row">
 				<!-- counter item -->
@@ -340,7 +342,7 @@
 								</div>
 
 								<div class="form-field text-field mandatory">
-									<input id="fake_supporter_phone" type="text" name="phone" placeholder="* 電話"
+									<input id="fake_supporter_phone" type="text" name="phone" placeholder="  電話"
 										class="small-input black-text alt-font taiwan-phone" required>
 								</div>
 
@@ -355,10 +357,7 @@
 										<input id="fake_optin" type="checkbox" class="fake_input--checkbox"
 											name="fake.supporter.emailOptin" value="" checked />
 										<label for="fake_optin" class="fake_input--checkbox--label">
-											我願意收到綠色和平發送的電子通訊，掌握環保工作的最新消息！我並同意綠色和平按照其
-											<a href="https://www.greenpeace.org/taiwan/policies/privacy-and-cookies/?ref=2020-plastic_retailer_seveneleven_footer_homepage"
-												title="個人隱私政策" target="_blank">個人隱私政策</a>
-											與我保持聯絡。
+											我要即時收到最新專案訊息，知道更多參與和協助的方法！綠色和平尊重並保障您的個人隱私資料，您隨時可取消訂閱，請參考<a href="https://www.greenpeace.org/taiwan/policies/privacy-and-cookies/?ref=2020-oceans_sanctuaries_form_homepage" target="_blank" title="隱私保護政策">隱私保護政策</a>。
 										</label>
 									</div>
 								</div>
@@ -472,7 +471,7 @@
 						<div class="row">
 							<div class="col-sm-12 col-xs-12">
 								<button class="btn btn-footer"
-									onclick="directTo('https://act.greenpeace.org/page/4723/donate/1?ref=2020-plastic_retailer_seveneleven_footer')">支持我們</button>
+									onclick="directTo('https://supporter.ea.greenpeace.org/tw/s/donate?campaign=plastics&ref=2020-plastic_retailer_seveneleven_footer')">支持我們</button>
 							</div>
 						</div>
 						<div class="row">
