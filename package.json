@@ -5,6 +5,7 @@
   "dependencies": {
     "gpea-npm-en-uploader": "github:greenpeace/gpea-npm-en-uploader",
     "mailcheck": "^1.1.1",
+    "node-forge": "0.10.0",
     "progressbar.js": "^1.1.0"
   },
   "devDependencies": {
