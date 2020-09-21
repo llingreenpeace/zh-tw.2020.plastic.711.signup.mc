@@ -234,9 +234,8 @@ const initForm = () => {
 						sendPetitionTracking("2020-plastic_retailer_seveneleven");
 					}
                     changeToPage(2);					
-			  	} else {
-					showSubmittedError();
 				}
+				  
 				hideFullPageLoading();
 			})
 			.catch(error => {

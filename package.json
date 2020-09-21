@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "gpea-npm-en-uploader": "greenpeace/gpea-npm-en-uploader",
+    "gpea-npm-en-uploader": "github:greenpeace/gpea-npm-en-uploader",
     "mailcheck": "^1.1.1",
     "progressbar.js": "^1.1.0"
   },
@@ -11,7 +11,7 @@
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
