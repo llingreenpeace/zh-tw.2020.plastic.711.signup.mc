@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/precache-manifest.32456239c0c972563de84d86e5bdb176.js"
+  "https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup.mc/precache-manifest.f6c6e87df6af7e293dd341eed2f3fa68.js"
 );
 
 self.addEventListener('message', (event) => {
